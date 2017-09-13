@@ -240,25 +240,32 @@ Vue.component('child', {
 })
 ```
 
-然后我们可以这样向它传入一个普通字符串：
+然后使用v-bind=将需要的数据对应绑定：
 
 ``` html
-<child message="hello!"></child>
+<child :message="message"></child>
+<child :count="count"></child>
 ```
 
 结果：
 
 {% raw %}
 <div id="prop-example-1" class="demo">
-  <child message="hello!"></child>
+  <child :message="message"></child>
+   <child :message="message"></child>
 </div>
 <script>
 new Vue({
   el: '#prop-example-1',
+   data:{
+      message:"我是根实例下的数据",
+      count:0
+      
+   },
   components: {
     child: {
-      props: ['message'],
-      template: '<span>{{ message }}</span>'
+      props: ['message','count'],
+      template: '<span>获取根实例下的数据=>>{{ message }}{{count}}</span>'
     }
   }
 })
